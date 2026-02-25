@@ -1,15 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useDraggable } from '../hooks/useDraggable'
 import { useResizable } from '../hooks/useResizable'
-import { useCallback } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 
 /**
- * Window — a draggable, resizable, frosted-glass window.
+ * Window — a draggable, resizable, frosted-glass window with sound effects.
  *
  * Props:
  *   id, title, icon, position, size, zIndex, isActive,
  *   onClose, onMinimize, onFocus, onUpdatePosition, onUpdateSize,
- *   children (the page content)
+ *   sounds, children (the page content)
  */
 export default function Window({
     id,
@@ -24,8 +24,19 @@ export default function Window({
     onFocus,
     onUpdatePosition,
     onUpdateSize,
+    sounds,
     children,
 }) {
+    const hasPlayed = useRef(false)
+
+    // Play open sound once on mount
+    useEffect(() => {
+        if (!hasPlayed.current) {
+            sounds?.open?.()
+            hasPlayed.current = true
+        }
+    }, [sounds])
+
     // Drag: attach to title bar
     const handleDragEnd = useCallback((pos) => {
         onUpdatePosition(id, pos)
@@ -47,11 +58,29 @@ export default function Window({
         handleResizeEnd
     )
 
+    const handleClose = (e) => {
+        e.stopPropagation()
+        sounds?.close?.()
+        sounds?.buttonDown?.()
+        onClose(id)
+    }
+
+    const handleMinimize = (e) => {
+        e.stopPropagation()
+        sounds?.minimize?.()
+        sounds?.buttonDown?.()
+        onMinimize(id)
+    }
+
     return (
         <AnimatePresence>
             <motion.div
                 initial={{ opacity: 0, scale: 0.92, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
+                animate={{
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                }}
                 exit={{ opacity: 0, scale: 0.92, y: 20 }}
                 transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute rounded-2xl overflow-hidden glass shadow-2xl"
@@ -72,12 +101,12 @@ export default function Window({
                     {/* Traffic light buttons */}
                     <div className="flex items-center gap-2">
                         <button
-                            onClick={(e) => { e.stopPropagation(); onClose(id) }}
+                            onClick={handleClose}
                             className="window-btn bg-red-500/80 hover:bg-red-400"
                             title="Close"
                         />
                         <button
-                            onClick={(e) => { e.stopPropagation(); onMinimize(id) }}
+                            onClick={handleMinimize}
                             className="window-btn bg-yellow-500/80 hover:bg-yellow-400"
                             title="Minimize"
                         />
@@ -86,7 +115,11 @@ export default function Window({
 
                     {/* Title */}
                     <div className="flex items-center gap-2 text-sm font-medium text-white/70">
-                        <img src={icon} alt={title} className="w-4 h-4 object-contain" />
+                        {typeof icon === 'string' ? (
+                            <img src={icon} alt={title} className="w-4 h-4 object-contain" />
+                        ) : (
+                            <div className="w-4 h-4 text-teal-400/70">{icon}</div>
+                        )}
                         <span>{title}</span>
                     </div>
 
@@ -111,9 +144,14 @@ export default function Window({
                     onMouseDown={onResizeMouseDown}
                 />
 
-                {/* ===== Active window ring ===== */}
+                {/* ===== Active window ring with glow ===== */}
                 {isActive && (
-                    <div className="absolute inset-0 rounded-2xl ring-1 ring-teal-500/25 pointer-events-none" />
+                    <motion.div
+                        className="absolute inset-0 rounded-2xl ring-1 ring-teal-500/25 pointer-events-none"
+                        initial={{ boxShadow: '0 0 0px rgba(13,148,136,0)' }}
+                        animate={{ boxShadow: '0 0 20px rgba(13,148,136,0.08)' }}
+                        transition={{ duration: 0.3 }}
+                    />
                 )}
             </motion.div>
         </AnimatePresence>

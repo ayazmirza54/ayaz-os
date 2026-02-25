@@ -195,3 +195,74 @@ body {
 .form-input::placeholder {
   color: rgba(255, 255, 255, 0.3);
 }
+
+/* ===== Microinteraction: Click Ripple ===== */
+@keyframes rippleExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.45;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+.click-ripple {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.5) 0%, transparent 70%);
+  pointer-events: none;
+  animation: rippleExpand 0.5s ease-out forwards;
+}
+
+/* ===== Microinteraction: Icon Glow Pulse ===== */
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(13, 148, 136, 0.15);
+  }
+
+  50% {
+    box-shadow: 0 0 18px rgba(13, 148, 136, 0.35);
+  }
+}
+
+.icon-glow {
+  animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+/* ===== Microinteraction: Volume Button ===== */
+.volume-btn {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.volume-btn:active {
+  transform: scale(0.92);
+}
+
+/* ===== Microinteraction: Dock Hover Glow Trail ===== */
+.dock-item::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 14px;
+  background: radial-gradient(circle at center, rgba(45, 212, 191, 0.12) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.dock-item:hover::before {
+  opacity: 1;
+}
+
+/* ===== Microinteraction: Window traffic-light buttons press ===== */
+.window-btn:active {
+  transform: scale(0.85);
+}
