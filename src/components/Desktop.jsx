@@ -118,7 +118,7 @@ export default function Desktop({
             <WelcomeWidget />
 
             {/* ===== Desktop Icons Grid ===== */}
-            <div className="absolute top-6 left-6 grid grid-cols-2 gap-1 max-h-[calc(100vh-120px)] overflow-hidden">
+            <div className="absolute top-4 left-3 md:top-6 md:left-6 grid grid-rows-3 md:grid-rows-4 grid-flow-col gap-0 md:gap-1">
                 {APPS.map((app) => (
                     <Icon
                         key={app.id}
@@ -157,7 +157,7 @@ export default function Desktop({
 
             {/* ===== Dock ===== */}
             <Dock
-                apps={APPS}
+                apps={APPS.filter(a => ['about', 'projects', 'terminal', 'browser'].includes(a.id))}
                 openWindowIds={windows.map(w => w.id)}
                 onToggle={toggleWindow}
                 sounds={sounds}
@@ -189,17 +189,17 @@ function WelcomeWidget() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
         >
-            <p className="text-sm text-white/20 font-light tracking-[0.3em] uppercase mb-2">
+            <p className="text-[10px] md:text-sm text-white font-light tracking-[0.3em] uppercase mb-1 md:mb-2">
                 Welcome to
             </p>
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-4"
+            <h1 className="text-3xl md:text-6xl font-bold tracking-tight mb-2 md:mb-4"
                 style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(45,212,191,0.7) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 ayaz.OS
             </h1>
-            <div className="text-4xl md:text-5xl font-light text-white/50 tabular-nums tracking-wider mb-2">
+            <div className="text-2xl md:text-5xl font-light text-white tabular-nums tracking-wider mb-1 md:mb-2">
                 {timeStr}
             </div>
-            <p className="text-sm text-white/25 font-light">
+            <p className="text-[10px] md:text-sm text-white font-light">
                 {dateStr}
             </p>
         </motion.div>

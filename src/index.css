@@ -266,3 +266,27 @@ body {
 .window-btn:active {
   transform: scale(0.85);
 }
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 767px) {
+
+  /* Windows go fullscreen on mobile */
+  .glass.absolute {
+    border-radius: 0 !important;
+  }
+
+  /* Dock sits flush at bottom on mobile */
+  .fixed.bottom-4 {
+    bottom: 8px !important;
+  }
+
+  /* Hide resize handle on mobile (windows are fullscreen) */
+  .resize-handle {
+    display: none;
+  }
+
+  /* Touch-friendly scrollbar */
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+}

@@ -39,7 +39,7 @@ export default function Icon({ id, label, icon, onOpen, sounds }) {
     return (
         <motion.div
             className={`
-        relative flex flex-col items-center gap-2 p-3 rounded-xl cursor-pointer
+        relative flex flex-col items-center gap-1 md:gap-2 p-2 md:p-3 rounded-xl cursor-pointer
         select-none transition-colors duration-150 overflow-hidden
         ${selected ? 'icon-selected icon-glow' : 'hover:bg-white/5'}
       `}
@@ -59,19 +59,19 @@ export default function Icon({ id, label, icon, onOpen, sounds }) {
 
             {/* Icon */}
             <motion.div
-                className="w-14 h-14 rounded-2xl glass-light flex items-center justify-center shadow-lg"
+                className="w-11 h-11 md:w-14 md:h-14 rounded-2xl glass-light flex items-center justify-center shadow-lg"
                 whileHover={{ scale: 1.08, rotate: 2 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >
                 {typeof icon === 'string' ? (
-                    <img src={icon} alt={label} className="w-8 h-8 object-contain" />
+                    <img src={icon} alt={label} className="w-6 h-6 md:w-8 md:h-8 object-contain" />
                 ) : (
-                    <div className="w-8 h-8 text-teal-400">{icon}</div>
+                    <div className="w-6 h-6 md:w-8 md:h-8 text-teal-400">{icon}</div>
                 )}
             </motion.div>
 
             {/* Label */}
-            <span className="text-xs font-medium text-white/70 text-center leading-tight max-w-[72px] truncate">
+            <span className="text-[10px] md:text-xs font-medium text-white/70 text-center leading-tight max-w-[60px] md:max-w-[72px] truncate">
                 {label}
             </span>
         </motion.div>

@@ -22,7 +22,7 @@ export default function Dock({ apps, openWindowIds, onToggle, sounds }) {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-            <div className="flex items-end gap-1.5 px-3 py-2 rounded-2xl glass shadow-2xl">
+            <div className="flex items-end gap-1 md:gap-1.5 px-2 md:px-3 py-1.5 md:py-2 rounded-2xl glass shadow-2xl">
                 {apps.map((app) => (
                     <motion.button
                         key={app.id}
@@ -31,7 +31,7 @@ export default function Dock({ apps, openWindowIds, onToggle, sounds }) {
                             onToggle(app.id, app.title, app.icon)
                         }}
                         onHoverStart={() => sounds?.hover?.()}
-                        className="dock-item relative flex flex-col items-center gap-1 p-1.5 rounded-xl
+                        className="dock-item relative flex flex-col items-center gap-0.5 md:gap-1 p-1 md:p-1.5 rounded-xl
                        hover:bg-white/5 transition-colors duration-150 group"
                         whileHover={{ scale: 1.25, y: -8 }}
                         whileTap={{ scale: 0.9, y: 0 }}
@@ -39,12 +39,12 @@ export default function Dock({ apps, openWindowIds, onToggle, sounds }) {
                         title={app.title}
                     >
                         {/* Icon */}
-                        <div className="w-11 h-11 rounded-xl glass-light flex items-center justify-center text-xl shadow-md
+                        <div className="w-9 h-9 md:w-11 md:h-11 rounded-xl glass-light flex items-center justify-center text-xl shadow-md
                             group-hover:shadow-teal-500/20 group-hover:border-teal-500/15 transition-shadow duration-200">
                             {typeof app.icon === 'string' ? (
-                                <img src={app.icon} alt={app.title} className="w-6 h-6 object-contain" />
+                                <img src={app.icon} alt={app.title} className="w-5 h-5 md:w-6 md:h-6 object-contain" />
                             ) : (
-                                <div className="w-6 h-6 text-teal-400">{app.icon}</div>
+                                <div className="w-5 h-5 md:w-6 md:h-6 text-teal-400">{app.icon}</div>
                             )}
                         </div>
 

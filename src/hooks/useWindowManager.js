@@ -11,12 +11,23 @@ export function useWindowManager() {
     const [windows, setWindows] = useState([])
     const [zCounter, setZCounter] = useState(10)
 
-    // Default window sizes & positions (staggered so they don't overlap)
+    // Default window sizes & positions (responsive)
     const getDefaults = useCallback((id, index) => {
+        const vw = window.innerWidth
+        const vh = window.innerHeight
+        const isMobile = vw < 768
+
+        if (isMobile) {
+            return {
+                position: { x: 0, y: 0 },
+                size: { width: vw, height: vh - 70 }, // leave room for dock
+            }
+        }
+
         const offset = (index % 5) * 30
         return {
             position: { x: 120 + offset, y: 60 + offset },
-            size: { width: 680, height: 480 },
+            size: { width: Math.min(680, vw - 40), height: Math.min(480, vh - 120) },
         }
     }, [])
 
