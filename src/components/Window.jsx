@@ -90,6 +90,8 @@ export default function Window({
                     width: size.width,
                     height: size.height,
                     zIndex,
+                    backdropFilter: 'blur(24px) saturate(1.6)',
+                    WebkitBackdropFilter: 'blur(24px) saturate(1.6)',
                 }}
                 onMouseDown={() => onFocus(id)}
             >

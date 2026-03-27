@@ -22,7 +22,10 @@ export default function Dock({ apps, openWindowIds, onToggle, sounds }) {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-            <div className="flex items-end gap-1 md:gap-1.5 px-2 md:px-3 py-1.5 md:py-2 rounded-2xl glass shadow-2xl">
+            <div
+                className="flex items-end gap-1 md:gap-1.5 px-2 md:px-3 py-1.5 md:py-2 rounded-2xl glass shadow-2xl"
+                style={{ backdropFilter: 'blur(24px) saturate(1.6)', WebkitBackdropFilter: 'blur(24px) saturate(1.6)' }}
+            >
                 {apps.map((app) => (
                     <motion.button
                         key={app.id}
