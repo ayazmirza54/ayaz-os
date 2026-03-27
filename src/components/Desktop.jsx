@@ -118,7 +118,12 @@ export default function Desktop({
             <WelcomeWidget />
 
             {/* ===== Desktop Icons Grid ===== */}
-            <div className="absolute top-4 left-3 md:top-6 md:left-6 grid grid-rows-3 md:grid-rows-4 grid-flow-col gap-0 md:gap-1">
+            <div className="
+                absolute top-10 left-1/2 -translate-x-1/2
+                grid grid-cols-4 grid-flow-row gap-1
+                md:top-6 md:left-6 md:translate-x-0
+                md:grid-cols-none md:grid-rows-4 md:grid-flow-col md:gap-1
+            ">
                 {APPS.map((app) => (
                     <Icon
                         key={app.id}
@@ -183,7 +188,8 @@ function WelcomeWidget() {
 
     return (
         <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1]
+            className="absolute left-1/2 -translate-x-1/2 z-[1]
+                       bottom-20 md:bottom-auto md:top-1/2 md:-translate-y-1/2
                        flex flex-col items-center pointer-events-none"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
