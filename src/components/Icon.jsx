@@ -59,7 +59,7 @@ export default function Icon({ id, label, icon, onOpen, sounds }) {
 
             {/* Icon */}
             <motion.div
-                className="w-11 h-11 md:w-14 md:h-14 rounded-2xl glass-light flex items-center justify-center shadow-lg"
+                className="w-11 h-11 md:w-14 md:h-14 rounded-2xl icon-tile flex items-center justify-center shadow-lg"
                 whileHover={{ scale: 1.08, rotate: 2 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >

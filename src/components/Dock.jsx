@@ -39,7 +39,7 @@ export default function Dock({ apps, openWindowIds, onToggle, sounds }) {
                         title={app.title}
                     >
                         {/* Icon */}
-                        <div className="w-9 h-9 md:w-11 md:h-11 rounded-xl glass-light flex items-center justify-center text-xl shadow-md
+                        <div className="w-9 h-9 md:w-11 md:h-11 rounded-xl icon-tile flex items-center justify-center text-xl
                             group-hover:shadow-teal-500/20 group-hover:border-teal-500/15 transition-shadow duration-200">
                             {typeof app.icon === 'string' ? (
                                 <img src={app.icon} alt={app.title} className="w-5 h-5 md:w-6 md:h-6 object-contain" />
