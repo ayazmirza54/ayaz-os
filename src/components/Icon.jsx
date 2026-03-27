@@ -39,8 +39,8 @@ export default function Icon({ id, label, icon, onOpen, sounds }) {
     return (
         <motion.div
             className={`
-        relative flex flex-col items-center gap-1.5 md:gap-2 p-1.5 md:p-3 rounded-xl cursor-pointer
-        select-none transition-colors duration-150 overflow-hidden w-[72px] md:w-auto
+        relative flex flex-col items-center gap-1.5 md:gap-2 p-2 md:p-3 rounded-xl cursor-pointer
+        select-none transition-colors duration-150 overflow-hidden w-20 md:w-auto
         ${selected ? 'icon-selected icon-glow' : 'hover:bg-white/5'}
       `}
             onClick={handleClick}
@@ -59,7 +59,7 @@ export default function Icon({ id, label, icon, onOpen, sounds }) {
 
             {/* Icon */}
             <motion.div
-                className="w-[52px] h-[52px] md:w-14 md:h-14 rounded-2xl icon-tile flex items-center justify-center shadow-lg"
+                className="w-14 h-14 md:w-14 md:h-14 rounded-2xl icon-tile flex items-center justify-center shadow-lg"
                 whileHover={{ scale: 1.08, rotate: 2 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >

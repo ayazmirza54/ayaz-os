@@ -119,8 +119,8 @@ export default function Desktop({
 
             {/* ===== Desktop Icons Grid ===== */}
             <div className="
-                absolute top-10 left-1/2 -translate-x-1/2
-                grid grid-cols-4 grid-flow-row gap-1
+                absolute top-12 left-1/2 -translate-x-1/2
+                grid grid-cols-4 grid-flow-row gap-2
                 md:top-6 md:left-6 md:translate-x-0
                 md:grid-cols-none md:grid-rows-4 md:grid-flow-col md:gap-1
             ">
